@@ -1,10 +1,15 @@
 <template>
   <section class="au-animate">
-      <h2>${heading}</h2>
-      <div class="row au-stagger">
-        <div class="col-sm-6 col-md-3 flickr-img au-animate" repeat.for="image of images">
+    <h2>${heading}</h2>
+    <div class="form-group">
+      <label class="control-label" for="search">Search</label>
+      <input class="form-control input-sm" type="text" id="search" value.bind="searchText">
+    </div>
+    <div class="row au-stagger">
+        <div class="col-sm-6 col-md-3 flickr-img au-animate" repeat.for="image of filteredImages">
           <a class="thumbnail">
-            <img src.bind="image.media.m"/>
+            <img src.bind="image.media.m"/><br>
+            <small>${image.title}</small>
           </a>
         </div>
       </div>

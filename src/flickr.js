@@ -5,6 +5,7 @@ import {HttpClient} from 'aurelia-http-client';
 export class Flickr{
   heading = 'Flickr';
   images = [];
+  searchText = '';
   url = 'http://api.flickr.com/services/feeds/photos_public.gne?tags=mountain&tagmode=any&format=json';
 
   constructor(http){
@@ -16,4 +17,14 @@ export class Flickr{
       this.images = response.content.items;
     });
   }
+
+  get filteredImages(){
+    console.log('here1');
+    if ( this.searchText === '' ) return this.images;
+
+    return this.images.filter(item => {
+        return item.title.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1;
+    });
+  }
+
 }
